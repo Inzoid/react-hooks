@@ -6,6 +6,7 @@ import './IngredientForm.css';
 const IngredientForm = React.memo(props => {
   const [ enteredTitle, setEnteredTitle ] = useState('');
   const [ enteredAmount, setEnteredAmount ] = useState('');
+  const [ enteredCount, setEnteredCount ] = useState(0);
 
   const submitHandler = event => {
     event.preventDefault();
@@ -13,6 +14,10 @@ const IngredientForm = React.memo(props => {
       title: enteredTitle,
       amount: enteredAmount
     });
+  };
+
+  const addCountIngredients = () => {
+    setEnteredCount(enteredCount + 1);
   };
 
   return (
@@ -31,8 +36,8 @@ const IngredientForm = React.memo(props => {
           </div>
           <div className="form-control">
             <label htmlFor="amount">Amount</label>
-            <input type="number" id="amount" 
-              value={enteredAmount} 
+            <input type="number" id="amount"
+              value={enteredCount}
               onChange={event => {
                 setEnteredAmount(event.target.value);
                 }
@@ -42,6 +47,7 @@ const IngredientForm = React.memo(props => {
             <button type="submit">Add Ingredient</button>
           </div>
         </form>
+        <button onClick={addCountIngredients}>Add Amount</button>
       </Card>
     </section>
   );
