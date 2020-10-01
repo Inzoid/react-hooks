@@ -20,11 +20,16 @@
 
 .form-control input:focus {
   outline: none;
-  border-bottom-color: #ff2058;
+  border-bottom-color: #206eff;
 }
 
 .ingredient-form__actions {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  text-align: center;
+}
+
+.count {
+  margin-bottom: 3px;
+  text-align: center;
 }

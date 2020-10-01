@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Card from '../UI/Card';
+import Loading from '../UI/LoadingIndicator';
 import './IngredientForm.css';
 
 const IngredientForm = React.memo(props => {
@@ -15,9 +16,17 @@ const IngredientForm = React.memo(props => {
     });
   };
 
+  useEffect(() => {
+    document.title = `Clicked ${enteredAmount} times`;
+  })
+
   const addCountIngredients = () => {
     setEnteredAmount(enteredAmount + 1);
   };
+
+  const minCountIngredients = () => {
+    setEnteredAmount(enteredAmount - 1);
+  }
 
   return (
     <section className="ingredient-form">
@@ -42,11 +51,15 @@ const IngredientForm = React.memo(props => {
                 }
               }/>
           </div>
-          <div className="ingredient-form__actions">
+          <div className="count">
             <button type="submit">Add Ingredient</button>
+            {props.loading && <Loading />}
           </div>
         </form>
-        <button onClick={addCountIngredients}>Add Amount</button>
+        <div className="count">
+          <button onClick={addCountIngredients}>+ Add</button>
+          <button onClick={minCountIngredients}>- Min</button>
+        </div>
       </Card>
     </section>
   );
