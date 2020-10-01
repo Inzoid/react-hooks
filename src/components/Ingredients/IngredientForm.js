@@ -51,14 +51,14 @@ const IngredientForm = React.memo(props => {
                 }
               }/>
           </div>
-          <div className="count">
-            <button type="submit">Add Ingredient</button>
-            {props.loading && <Loading />}
-          </div>
         </form>
         <div className="count">
           <button onClick={addCountIngredients}>+ Add</button>
           <button onClick={minCountIngredients}>- Min</button>
+        </div>
+        <div className="count">
+          <button type="submit">Add Ingredient</button>
+          {props.loading && <Loading />}
         </div>
       </Card>
     </section>

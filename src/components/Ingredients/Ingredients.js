@@ -53,37 +53,58 @@ const Ingredients = () => {
   })
 
   const filteredIngredientsHandler = useCallback(filteredIngredients => {
-    dispatch({type: 'SET', ingredients: filteredIngredients})
+    dispatch({
+      type: 'SET', 
+      ingredients: filteredIngredients
+    })
   }, []);
 
   const addIngredientsHandler = ingredient => {
-    dispatchHttp({type: 'SEND'});
+    dispatchHttp({
+      type: 'SEND'
+    });
     fetch('https://react-hooks-fc1d4.firebaseio.com/ingredients.json', {
       method: 'POST',
       body: JSON.stringify(ingredient),
       headers: {'Content-Type': 'application/json'}
     }).then(response => {
-      dispatchHttp({type: 'RESPONSE'}); 
+      dispatchHttp({
+        type: 'RESPONSE'
+      }); 
       return response.json();
     }).then(responseData => {
-      dispatch({type: 'ADD', ingredient})
+      dispatch({
+        type: 'ADD', 
+        ingredient
+      })
     });
   };
 
   const removeIngredientHandler = ingredientId => {
-    dispatchHttp({type: 'SEND'});
+    dispatchHttp({
+      type: 'SEND'
+    });
     fetch(`https://react-hooks-fc1d4.firebaseio.com/ingredients/${ingredientId}.jon`, {
       method: 'DELETE',
     }).then(response => {
-      dispatchHttp({type: 'RESPONSE'});
-      dispatch({type: 'DELETE', id: ingredientId});
+      dispatchHttp({
+        type: 'RESPONSE'
+      });
+      dispatch({
+        type: 'DELETE', id: ingredientId
+      });
     }).catch(error => {
-      dispatchHttp({type: 'ERROR', errorMessage: 'Error gan'});
+      dispatchHttp({
+        type: 'ERROR', 
+        errorMessage: 'Error gan'
+      });
     })
   }
 
   const clearError = () => {
-    dispatchHttp({type: 'CLEAR'});
+    dispatchHttp({
+      type: 'CLEAR'
+    });
   };
 
   return (
